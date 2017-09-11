@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#
+# Report total # of connected OpenVPN clients
+STATUSFILE='/var/log/openvpn/openvpn-status.log'
+
+# below shouldn't need modifying
+CLIENTS=$(grep 'CLIENT_LIST,' "$STATUSFILE" | grep -v 'HEADER,CLIENT_LIST' | wc -l)
+printf '%s\n' "OK: $CLIENTS OpenVPN Client Connections"
